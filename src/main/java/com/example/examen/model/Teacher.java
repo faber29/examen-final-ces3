@@ -55,8 +55,18 @@ public class Teacher {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
+
+
     @Override
     public String toString() {
-        return name + " " + lastName + " enseña " + subject + " con salario mensual $" + salary;
+        return "Teacher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", subject='" + subject + '\'' +
+                ", salary=" + salary +
+                ", email='" + email + '\'' +
+                '}';
     }
+
 }

@@ -24,6 +24,7 @@ public class ExamenFinalCes3Application {
 				System.out.println(teacher.getName() + " " + teacher.getLastName() +
 						" - Salario anual: $" + teacher.calcularSalarioAnual());
 			});
+
 		};
 	}
 }
