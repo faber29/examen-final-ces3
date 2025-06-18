@@ -44,25 +44,15 @@ public class Teacher {
 
     // Getters, Setters y toString()
     public Long getId() { return id; }
-
     public String getName() { return name; }
-
     public void setName(String name) { this.name = name; }
-
     public String getLastName() { return lastName; }
-
     public void setLastName(String lastName) { this.lastName = lastName; }
-
     public String getSubject() { return subject; }
-
     public void setSubject(String subject) { this.subject = subject; }
-
     public Double getSalary() { return salary; }
-
     public void setSalary(Double salary) { this.salary = salary; }
-
     public String getEmail() { return email; }
-
     public void setEmail(String email) { this.email = email; }
 
     @Override
