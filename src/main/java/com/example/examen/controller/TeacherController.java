@@ -15,9 +15,24 @@ public class TeacherController {
     private TeacherRepository teacherRepository;
 
     @PostMapping
-    public Teacher crear(@RequestBody Teacher teacher) {
-        return teacherRepository.save(teacher);
+    public Map<String, Object> crear(@RequestBody Teacher teacher) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            Teacher saved = teacherRepository.save(teacher);
+            response.put("mensaje", "Profesor creado exitosamente");
+            response.put("profesor", saved);
+
+            // Imprimir en consola
+            System.out.println(" Profesor creado: " + saved);
+        } catch (Exception e) {
+            response.put("error", "No se pudo crear el profesor: " + e.getMessage());
+
+            // Imprimir error en consola
+            System.out.println(" Error al crear profesor: " + e.getMessage());
+        }
+        return response;
     }
+
 
     @GetMapping
     public List<Teacher> listar() {
@@ -38,14 +53,17 @@ public class TeacherController {
 
     @GetMapping("/{id}/salario-anual")
     public Map<String, Object> salarioPorId(@PathVariable Long id) {
-        Optional<Teacher> t = teacherRepository.findById(id);
-        if (t.isPresent()) {
-            Map<String, Object> item = new HashMap<>();
-            item.put("nombre", t.get().getName() + " " + t.get().getLastName());
-            item.put("salarioAnual", t.get().calcularSalarioAnual());
-            return item;
-        } else {
-            throw new RuntimeException("Profesor no encontrado");
+        Map<String, Object> response = new HashMap<>();
+        try {
+            Teacher teacher = teacherRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Profesor no encontrado con ID: " + id));
+
+            response.put("nombre", teacher.getName() + " " + teacher.getLastName());
+            response.put("salarioAnual", teacher.calcularSalarioAnual());
+        } catch (Exception e) {
+            response.put("error", e.getMessage());
         }
+        return response;
     }
+
 }

@@ -60,7 +60,7 @@ public class Teacher {
     @Override
     public String toString() {
         return "Teacher{" +
-                "id=" + id +
+                "id=" + id + 
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", subject='" + subject + '\'' +
