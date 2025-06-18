@@ -18,7 +18,9 @@ public class ExamenFinalCes3Application {
 	public CommandLineRunner initDatabase(TeacherRepository repository) {
 		return args -> {
 			repository.save(new Teacher("Ana", "Ramírez", "Matemáticas", 3000.0, "ana@correo.com"));
-			repository.save(new Teacher("Luis", "Pérez", "Física", 3200.0, "luis@correo.com"));
+			repository.save(new Teacher("Luis", "Pérez", "Física", 3500.0, "luis@correo.com"));
+			repository.save(new Teacher("Carlos", "Lozano", "Matemáticas", 4100.0, "carlos@correo.com"));
+
 
 			repository.findAll().forEach(teacher -> {
 				System.out.println(teacher.getName() + " " + teacher.getLastName() +
@@ -26,6 +28,15 @@ public class ExamenFinalCes3Application {
 			});
 			System.out.println("Profesores registrados():");
 			repository.findAll().forEach(System.out::println);  // <-- uso toString();
+
+			System.out.println("=== Profesores de Matemáticas ===");
+			repository.findBySubject("Matemáticas").forEach(System.out::println);
+
+			System.out.println("=== Profesores con salario mayor a 3400 ===");
+			repository.findBySalaryGreaterThan(3100.0).forEach(System.out::println);
+
+			System.out.println("=== Profesores cuyo nombre contiene 'lu' ===");
+			repository.findByNameContaining("lu").forEach(System.out::println);
 
 		};
 	}
